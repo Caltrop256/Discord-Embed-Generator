@@ -29,6 +29,7 @@ if($type) {
     addTag('site_name', 'og:', 'property', 'Caltrop');
     addTag('description', 'og:', 'property', 'Easily create ToS-friendly Discord Embeds!');
     addTag("theme-color", null, "name", "#ff0093");
+    echo '<title>Discord Embed Generator</title>'
 }
 ?>
 </head>
@@ -37,7 +38,7 @@ if($type) {
     <header class="unselectable">
         <h2>Discord Embed Generator</h2>
         <p>Easily create ToS-friendly Discord Embeds! Simply copy the link below into any channel.</p>
-        <p>All source code is available on <a href="https://github.com/CaltropUwU/Discord-Embed-Generator">GitHub</a></p>
+        <p>All source code is available on <a href="https://github.com/CaltropUwU/Discord-Embed-Generator">GitHub</a>.</p>
     </header>
     <form id="inputForm"></form>
     <div class="output">
