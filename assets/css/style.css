@@ -1,0 +1,161 @@
+@font-face {
+    font-family: 'ISO Regular';
+    src: local('ISO v0.5'),
+        url('../fonts/ISOv0.5-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ISO Bold';
+    src: local('ISO v0.5'),
+        url('../fonts/ISOv0.5-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+html {
+    background: #191618;
+    font-family: 'ISO Regular';
+    font-weight: 100;
+}
+
+body {
+    width: 100%;
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+h1 {
+    font-family: 'ISO Bold';
+    text-transform: uppercase;
+    font-size: 2.5em;
+    line-height: 0.5em;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-family: 'ISO Bold';
+    font-size: 1.75em;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+form,
+header,
+.output {
+    color: #ffffff;
+    width: 90%;
+    max-width: 1200px;
+    margin-bottom: 50px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: column;
+}
+
+header a,
+form h2 {
+    color: #da3a2d;
+    text-decoration: underline;
+}
+
+.item input[type=text] {
+    width: 75%;
+    height: 1.4em;
+    outline: none;
+    font-family: 'ISO Regular';
+    font-size: 1.2em;
+    color: #CFCFCF;
+    transition: width ease 0.5s;
+    border: none;
+    background-color: #302829;
+}
+
+.item input[type=text]:focus {
+    width: 80%;
+}
+
+.item .color-input input[type=text] {
+    width: 75%;
+    height: 1.4em;
+}
+
+.item .color-input input[type=color] {
+    position: relative;
+    bottom: -4px;
+    width: 2.15em;
+    height: 2.15em;
+    outline: none;
+    border: none;
+    background-color: #302829;
+}
+
+.item .color-input input[type=text] {
+    width: calc(75% - 31px);
+}
+
+.item .color-input input[type=text]:focus {
+    width: calc(80% - 31px);
+}
+
+.output div {
+    margin-top: 10px;
+    flex-direction: row;
+}
+
+.output input {
+    width: 80%;
+    height: 2em;
+    outline: none;
+    font-family: 'ISO Regular';
+    font-size: 1.5em;
+    color: #CFCFCF;
+    border: none;
+    background-color: #302829;
+}
+
+.output button {
+    width: 10%;
+    height: 2em;
+    outline: none;
+    border: none;
+    background-color: #302829;
+    font-family: 'ISO Regular';
+    font-size: 1.5em;
+    color: #CFCFCF;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.output button:after {
+    content: "";
+    background: #818181;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s;
+}
+
+.output button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
