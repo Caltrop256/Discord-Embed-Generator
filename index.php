@@ -29,7 +29,7 @@ if($type) {
     addTag('site_name', 'og:', 'property', 'Caltrop');
     addTag('description', 'og:', 'property', 'Easily create ToS-friendly Discord Embeds!');
     addTag("theme-color", null, "name", "#ff0093");
-    echo '<title>Discord Embed Generator</title>'
+    echo '<title>Discord Embed Generator</title>';
 }
 ?>
 </head>
