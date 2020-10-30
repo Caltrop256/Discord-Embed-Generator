@@ -42,6 +42,8 @@ h2 {
 }
 
 p {
+    margin-top: 2px;
+    margin-bottom: 0px;
     font-size: 1.2em;
 }
 
@@ -80,6 +82,11 @@ form h2 {
     width: 80%;
 }
 
+.item .color-input {
+    display: flex;
+    align-items: center;
+}
+
 .item .color-input input[type=text] {
     width: 75%;
     height: 1.4em;
@@ -87,12 +94,16 @@ form h2 {
 
 .item .color-input input[type=color] {
     position: relative;
-    bottom: -4px;
-    width: 2.15em;
-    height: 2.15em;
+    width: 2.1em;
+    height: 2.1em;
     outline: none;
     border: none;
     background-color: #302829;
+}
+
+.item .color-input input[type=color]::-moz-color-swatch,
+.item .color-input input[type=color]::-webkit-color-swatch {
+    border: none;
 }
 
 .item .color-input input[type=text] {
