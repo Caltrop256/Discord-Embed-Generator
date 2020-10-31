@@ -170,3 +170,40 @@ form h2 {
     -ms-user-select: none;
     user-select: none;
 }
+
+.failed-requirement {
+    position: absolute;
+    display: inline-block;
+    visibility: hidden;
+    font-size: 1.25em;
+    margin-left: -1em;
+}
+
+.failed-requirement .signal {
+    color: red;
+    cursor: pointer;
+}
+
+.failed-requirement .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+
+.failed-requirement:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.failed-requirement .tooltiptext {
+    top: -5px;
+    left: 105%;
+    opacity: 0;
+    transition: opacity 1s;
+}

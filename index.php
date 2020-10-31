@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <script src="./assets/js/main.js"></script>
     <link rel="shortcut icon" href="https://caltrop.dev/favicon.png" type="image/png">
+    <title>Discord Embed Generator</title>
 <?php
 $type = $_GET["type"];
 function addTag($name, $prefix = "", $prop = "property", $val = null) {
@@ -29,7 +30,6 @@ if($type) {
     addTag('site_name', 'og:', 'property', 'Caltrop');
     addTag('description', 'og:', 'property', 'Easily create ToS-friendly Discord Embeds!');
     addTag("theme-color", null, "name", "#ff0093");
-    echo '<title>Discord Embed Generator</title>';
 }
 ?>
 </head>

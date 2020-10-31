@@ -4,6 +4,10 @@ window.addEventListener('load', function() {
     const button = window.document.getElementById('copyText');
     const urlParams = new URLSearchParams(window.location.search);
     const vals = new Map();
+
+    const urlRegex = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/i;
+    const urlFail = 'Your input must be a valid URL!';
+
     const fields = [
         {
             name: 'title',
@@ -20,19 +24,27 @@ window.addEventListener('load', function() {
         {
             name: 'theme-color',
             display: 'Color',
-            type: 'color'
+            type: 'color',
+            test: /^#[0-9a-f]{6,6}$/,
+            failure: 'Your input must be a valid HEX color!'
         },
         {
             name: 'author_url',
             display: 'Author Redirect',
+            test: urlRegex,
+            failure: urlFail
         },
         {
             name: 'provider_url',
             display: 'Provider Redirect',
+            test: urlRegex,
+            failure: urlFail
         },
         {
             name: 'url',
             display: 'Image URL',
+            test: urlRegex,
+            failure: urlFail
         }
     ];
     var url;
@@ -52,10 +64,29 @@ window.addEventListener('load', function() {
             input = window.document.createElement('input'),
             title = window.document.createElement('h2');
 
+        var verify = null;
+        if(fields[i].test) {
+            verify = window.document.createElement('div');
+            verify.classList.add('unselectable', 'failed-requirement');
+            verify.id = '_verify' + fields[i].name;
+
+            const sign = window.document.createElement('span');
+            sign.classList.add('signal');
+            sign.innerHTML = '\u26A0';
+
+            const tooltip = window.document.createElement('span');
+            tooltip.classList.add('tooltiptext');
+            tooltip.innerHTML = fields[i].failure;
+
+            verify.appendChild(sign);
+            verify.appendChild(tooltip);
+        }
+
         item.classList.add('item');
         title.innerHTML = fields[i].display;
         title.classList.add('unselectable');
         item.appendChild(title);
+        if(verify) item.appendChild(verify);
 
         const param = urlParams.get(fields[i].name);
         vals.set(fields[i].name, param);
@@ -81,14 +112,11 @@ window.addEventListener('load', function() {
             }
 
             input.oninput = () => {
-                let str = input.value;
-                if(str.charAt(0) != '#') str = '#' + str;
-                str = str.substring(0, 7);
-                str.replace(/[^0-9A-F#]+/gi, '');
-                while(str.length < 7) str += '0';
-                input.value = str.toUpperCase();
-                colorInput.value = str.toLowerCase();
-                vals.set(fields[i].name, str.toLowerCase());
+                const str = input.value;
+                const visible = input.value && !fields[i].test.test(input.value);
+                window.document.getElementById('_verify' + fields[i].name).style.visibility = visible ? 'visible' : 'hidden';
+                if(!visible) colorInput.value = str.toLowerCase();
+                vals.set(fields[i].name, visible ? null : str.toLowerCase());
                 updateURL();
             };
 
@@ -97,7 +125,12 @@ window.addEventListener('load', function() {
             item.appendChild(wrapper);
         } else {
             input.oninput = () => {
-                vals.set(fields[i].name, input.value);
+                var visible;
+                if(fields[i].test) {
+                    visible = input.value && !fields[i].test.test(input.value);
+                    window.document.getElementById('_verify' + fields[i].name).style.visibility = visible ? 'visible' : 'hidden';
+                }
+                vals.set(fields[i].name, visible ? null : input.value);
                 updateURL();
             }
             item.appendChild(input);
